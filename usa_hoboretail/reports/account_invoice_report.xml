@@ -222,7 +222,15 @@
                                 <span>Terms &amp; Conditions</span>
                                 <br/>
                                 <span style="color:#c0bfbf">Total payment due in
-                                    <t t-esc="o.invoice_payment_term_id.line_ids[0].days"/>
+                                    <t t-if="o.invoice_payment_term_id">
+                                         <t t-esc="o.invoice_payment_term_id.line_ids[0].days"/>
+                                    </t>
+                                    <t t-elif="o.invoice_date_due">
+                                         <t t-esc="(o.invoice_date_due - o.invoice_date).days"/>
+                                    </t>
+                                    <t t-else="">
+                                        0
+                                    </t>
                                     days
                                 </span>
                             </div>
