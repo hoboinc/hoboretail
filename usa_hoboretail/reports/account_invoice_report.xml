@@ -22,34 +22,21 @@
                     <div style="border-right: 25px solid #9e00b9;height: 54px;margin-right:15px"/>
                 </div>
                 <div class="col-11">
-                    <div class="row">
-                        <div class="col-8 mt-2">
+                    <div class="row mt-2">
+                        <div class="col-8 ">
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-left" alt="Logo"
                                  style="max-height:35px; height: 35px; max-width: 150px;width: 150px;"/>
                         </div>
-                        <div class="col-4 mt-2">
+                        <div class="col-4 ">
                             <h1 style="color:#f2da1c">Invoice</h1>
                             <span t-esc="o.name" style="font-size: 21px"/>
-                            <br/>
-                            <table class="table table-borderless table-sm">
-                                <tbody>
-                                    <tr>
-                                        <td style="width:50%">
-                                            <span>Invoice Date</span>
-                                        </td>
-                                        <td style="width:10%">:</td>
-                                        <td class="text-right" tyle="width:40%">
-                                            <t t-esc="o.invoice_date"/>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-8">
                             <span>Invoice To</span>
-                            <h4 t-esc="o.partner_id.name"/>
+                            <h5 t-esc="o.partner_id.name"/>
                             <t t-if="o.partner_id.street">
                                 <span t-esc="o.partner_id.street"/>,
                             </t>
@@ -78,6 +65,15 @@
                             <table class="table table-borderless table-sm">
                                 <tbody>
                                     <tr>
+                                        <td style="width:50%">
+                                            <span>Invoice Date</span>
+                                        </td>
+                                        <td style="width:10%">:</td>
+                                        <td class="text-right" tyle="width:40%">
+                                            <t t-esc="o.invoice_date"/>
+                                        </td>
+                                    </tr>
+                                     <tr>
                                         <td style="width:50%">Work Order</td>
                                         <td style="width:10%">:</td>
                                         <td class="text-right" style="width:40%">
@@ -142,15 +138,15 @@
                             <div class="col-12">
                                 <table class="table table-striped table-sm">
                                     <thead>
-                                        <tr>
+                                        <tr style="font-size: 16px">
                                             <th>
-                                                <h5>Item Descriptions</h5>
+                                                Item Descriptions
                                             </th>
                                             <th style="text-align: right">
-                                                <h5>Unit Price Quantity</h5>
+                                                Unit Price Quantity
                                             </th>
                                             <th style="text-align: right">
-                                                <h5>Total</h5>
+                                                Total
                                             </th>
                                         </tr>
                                     </thead>
@@ -446,7 +442,7 @@
         <field name="page_height">297</field>
         <field name="page_width">210</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">65</field> <!-- la diferencia (margin_top - header_spacing) es el espacio que queda en la parte superior de la hoja-->
+        <field name="margin_top">68</field> <!-- la diferencia (margin_top - header_spacing) es el espacio que queda en la parte superior de la hoja-->
         <field name="header_spacing">55</field>
         <field name="margin_bottom">24</field>
         <field name="margin_left">17</field>
