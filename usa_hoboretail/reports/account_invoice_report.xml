@@ -70,7 +70,7 @@
                                         </td>
                                         <td style="width:10%">:</td>
                                         <td class="text-right" tyle="width:40%">
-                                            <t t-esc="o.invoice_date"/>
+                                            <t t-esc="o.format_date_usa(o.invoice_date)"/>
                                         </td>
                                     </tr>
                                      <tr>
@@ -84,7 +84,7 @@
                                         <td style="width:50%">W/O Date</td>
                                         <td style="width:10%">:</td>
                                         <td class="text-right" style="width:40%">
-                                            <t t-esc="o.work_order_date"/>
+                                            <t t-esc="o.format_date_usa(o.work_order_date)"/>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -139,13 +139,13 @@
                                 <table class="table table-striped table-sm">
                                     <thead>
                                         <tr style="font-size: 16px">
-                                            <th>
+                                            <th style="width:75%">
                                                 Item Descriptions
                                             </th>
-                                            <th style="text-align: right">
-                                                Unit Price Quantity
+                                            <th style="text-align: right;width:12%">
+                                                Unit Price
                                             </th>
-                                            <th style="text-align: right">
+                                            <th style="text-align: right;width:13%">
                                                 Total
                                             </th>
                                         </tr>
