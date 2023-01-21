@@ -47,3 +47,10 @@ class AccountMove(models.Model):
             record.name = name
             record.payment_reference = name
             _logger.info("MOVE - Generación de nombre correcto %s " % name)
+
+
+    def format_date_usa(self, date):
+        if not date:
+            return '-'
+        else:
+            return date.strftime('%m/%d/%Y')
