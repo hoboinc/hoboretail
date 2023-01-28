@@ -142,6 +142,9 @@
                                             <th style="width:75%">
                                                 Item Descriptions
                                             </th>
+                                            <th style="text-align: right;width:12%" t-if="o.show_qty_report">
+                                                Quantity
+                                            </th>
                                             <th style="text-align: right;width:12%">
                                                 Unit Price
                                             </th>
@@ -163,6 +166,9 @@
                                                 <t t-if="line.display_type == 'product'" name="account_invoice_line_accountable">
                                                     <td name="account_invoice_line_name">
                                                         <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                                    </td>
+                                                    <td t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}" t-if="o.show_qty_report">
+                                                        <span class="text-nowrap" t-field="line.quantity"/>
                                                     </td>
                                                     <td t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                                         <span class="text-nowrap" t-field="line.price_unit"/>
@@ -221,7 +227,7 @@
                                     <t t-if="o.invoice_payment_term_id">
                                          <t t-esc="o.invoice_payment_term_id.line_ids[0].days"/>
                                     </t>
-                                    <t t-elif="o.invoice_date_due">
+                                    <t t-elif="o.invoice_date_due and o.invoice_date">
                                          <t t-esc="(o.invoice_date_due - o.invoice_date).days"/>
                                     </t>
                                     <t t-else="">

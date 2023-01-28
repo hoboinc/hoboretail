@@ -1,0 +1,1 @@
+from . import invoice_partner_massive_wizard
