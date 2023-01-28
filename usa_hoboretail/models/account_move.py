@@ -13,7 +13,7 @@ class AccountMove(models.Model):
     work_order = fields.Char(string='Work order', copy=False)
     work_order_date = fields.Date(string='W/O Date')
     sequence_id = fields.Many2one('ir.sequence', copy=False)
-    show_qty_report = fields.Boolean(string='Mostrar cant. en reporte')
+    show_qty_report = fields.Boolean(string='Show qty report')
     file_ids = fields.One2many('account.move.files', 'move_id')
 
     def _default_invoice_date(self):
@@ -39,11 +39,11 @@ class AccountMove(models.Model):
                 if record.move_type in ('out_invoice', 'in_invoice'):
                     sequence_id = journal_id.sequence_id
                     if not sequence_id:
-                        raise ValidationError(_("Asegúrese de tener una secuencia para el diario %s" % journal_id.name))
+                        raise ValidationError(_("Make sure you have a sequence for the journal%s" % journal_id.name))
                 elif record.move_type in ('out_refund', 'in_refund'):
                     sequence_id = journal_id.sequence_return_id
                     if not sequence_id:
-                        raise ValidationError(_("Asegúrese de tener una secuencia rectificativa para el diario %s" % journal_id.name))
+                        raise ValidationError(_("Make sure you have a corrective sequence for the journal %s" % journal_id.name))
 
                 name = record.env.ref('usa_hoboretail.sequence_move_temporary').next_by_id()
                 _logger.info("MOVE - Generación de nombre temporal %s " % name)

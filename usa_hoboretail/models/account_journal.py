@@ -112,8 +112,8 @@ class AccountJournal(models.Model):
                     'tag': 'display_notification',
                     'params': {
                         'type': 'success',
-                        'title': _('Bien!'),
-                        'message': _("Secuencia rectificativa generada correctamente."),
+                        'title': _('Good!'),
+                        'message': _("Corrective sequence generated correctly."),
                         'next': {'type': 'ir.actions.act_window_close'},
                     }
                 }

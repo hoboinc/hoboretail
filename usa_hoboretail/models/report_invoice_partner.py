@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 class ReportInvoicePartner(models.Model):
     _name = 'report.invoice.partner'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = 'Reporte de facturas de proveedor'
+    _description = 'Report invoice customer'
     _rec_name = 'partner_id'
 
     partner_id = fields.Many2one('res.partner')
