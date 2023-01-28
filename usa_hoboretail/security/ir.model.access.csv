@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_usa_hoboretail_usa_hoboretail,usa_hoboretail.usa_hoboretail,model_usa_hoboretail_usa_hoboretail,base.group_user,1,1,1,1
+access_account_move_files,account.move.files,model_account_move_files,base.group_user,1,1,1,1
+access_invoice_partner_massive_wizard,invoice.partner.massive.wizard,model_invoice_partner_massive_wizard,base.group_user,1,1,1,1
+access_report_invoice_partner,report.invoice.partner,model_report_invoice_partner,base.group_user,1,1,1,1

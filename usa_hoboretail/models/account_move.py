@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
+from datetime import date, datetime, timedelta
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -13,6 +13,15 @@ class AccountMove(models.Model):
     work_order = fields.Char(string='Work order', copy=False)
     work_order_date = fields.Date(string='W/O Date')
     sequence_id = fields.Many2one('ir.sequence', copy=False)
+    show_qty_report = fields.Boolean(string='Mostrar cant. en reporte')
+    file_ids = fields.One2many('account.move.files', 'move_id')
+
+    def _default_invoice_date(self):
+        date = (datetime.now() - timedelta(hours=5)).date()
+        _logger.info("Fecha: %s" % date)
+        return date
+
+    invoice_date = fields.Date(string='Fecha de factura',readonly=True,states={'draft': [('readonly', False)]},index=True,copy=False,default=_default_invoice_date)
 
     def _post(self, soft=True):
         """Sobreescritura de método _POS() """
@@ -54,3 +63,20 @@ class AccountMove(models.Model):
             return '-'
         else:
             return date.strftime('%m/%d/%Y')
+
+    def action_wizard_invoice_partner(self):
+
+        partner_ids = self.mapped('partner_id')
+        if len(partner_ids.ids) > 1:
+            raise ValidationError(_("Please select invoices that belong to only one customer."))
+
+        invoice_ids = self
+
+        return {
+            'name': 'Customer invoices - %s' % partner_ids.name,
+            'type': 'ir.actions.act_window',
+            'res_model': 'invoice.partner.massive.wizard',
+            'view_mode': 'form',
+            'context': {'default_partner_id': partner_ids.id, 'default_invoice_ids': invoice_ids.ids},
+            'target': 'new',
+        }

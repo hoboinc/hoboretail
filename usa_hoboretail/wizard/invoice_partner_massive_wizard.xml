@@ -1,0 +1,34 @@
+<odoo>
+    <!-- Sale subscription wizard -->
+    <record model="ir.ui.view" id="invoice_partner_massive_wizard">
+        <field name="name">invoice.partner.massive.wizard.form</field>
+        <field name="model">invoice.partner.massive.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Upsell">
+               <group>
+                   <field name="partner_id" />
+               </group>
+                <notebook>
+                    <page string="Invoices list">
+                        <field name="invoice_ids" nolabel="1"/>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="send_mail" type="object" data-hotkey="q"
+                            string="Send mail" class="oe_highlight"/>
+                    <button special="cancel" data-hotkey="z" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_invoice_partner_massive_wizard">
+        <field name="name">Customer invoices</field>
+        <field name="res_model">invoice.partner.massive.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="invoice_partner_massive_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

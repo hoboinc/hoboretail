@@ -9,16 +9,18 @@
     'author': "Ing.Jhonny Mack Merino Samillán",
     'website': "www.hoboretail.com ",
     'category': 'Sale',
-    'version': '16.0.0.5',
+    'version': '16.0.0.8',
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'account'],
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'data/sequence.xml',
+        'data/mail_template_invoice.xml',
         'views/account_journal_views.xml',
         'views/sale_order_views.xml',
         'views/account_move_views.xml',
+        'wizard/invoice_partner_massive_wizard.xml',
         'reports/account_invoice_report.xml',
     ],
     'installable': True,
