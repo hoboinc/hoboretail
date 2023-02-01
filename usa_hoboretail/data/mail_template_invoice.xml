@@ -46,7 +46,7 @@
                                     <td style="text-align:center; color:#b71697">
                                         <t t-out="i"/>
                                     </td>
-                                    <td>-</td>
+                                    <td>Product</td>
                                     <td style="text-align:center">
                                         <t t-out="invoice.work_order"/>
                                     </td>
@@ -54,7 +54,10 @@
                                         <t t-out="invoice.name"/>
                                     </td>
                                     <td style="text-align:center">
-                                        <t t-out="invoice.work_order_date"/>
+                                        <t t-if="invoice.invoice_date">
+                                              <t t-out="invoice.invoice_date.strftime('%m/%d/%Y')"/>
+                                        </t>
+
                                     </td>
                                     <td style="text-align: right">
                                         <t t-out="invoice.amount_residual"/>
