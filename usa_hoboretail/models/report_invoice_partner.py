@@ -5,6 +5,7 @@ from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 from datetime import datetime, date
 import calendar
+import base64
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -39,6 +40,8 @@ class ReportInvoicePartner(models.Model):
             email_template = self.env.ref("usa_hoboretail.email_template_invoice_hobo")
             attachment_ids = record.files_to_attachment()
             email_template.attachment_ids += attachment_ids
+            attachment_invoice_ids = record._pdf_invoice()
+            email_template.attachment_ids += attachment_invoice_ids
             res = email_template.sudo().send_mail(record.id, raise_exception=False, force_send=True)
             _logger.info("Send mail - %s " % res)
             return {
@@ -61,4 +64,19 @@ class ReportInvoicePartner(models.Model):
         attachment_ids = file_ids.mapped('attachment_id')
         return attachment_ids
 
-
+    def _pdf_invoice(self):
+        attachments = self.env['ir.attachment'].sudo()
+        if self.invoice_ids:
+            for inv in self.invoice_ids:
+                filename = inv.name + '.pdf'
+                report = self.env['ir.actions.report']._render_qweb_pdf("account.account_invoices", inv.id)
+                invoice = self.env['ir.attachment'].create({
+                    'name': filename,
+                    'type': 'binary',
+                    'datas': base64.b64encode(report[0]),
+                    'res_model': 'account.move',
+                    'res_id': inv.id,
+                    'mimetype': 'application/x-pdf'
+                })
+                attachments += invoice
+        return attachments
