@@ -39,11 +39,13 @@ class ReportInvoicePartner(models.Model):
             record = self.create_report(options)
             email_template = self.env.ref("usa_hoboretail.email_template_invoice_hobo")
             attachment_ids = record.files_to_attachment()
+            email_template.attachment_ids = False
             email_template.attachment_ids += attachment_ids
             attachment_invoice_ids = record._pdf_invoice()
             email_template.attachment_ids += attachment_invoice_ids
             res = email_template.sudo().send_mail(record.id, raise_exception=False, force_send=True)
             _logger.info("Send mail - %s " % res)
+            email_template.attachment_ids = False
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
