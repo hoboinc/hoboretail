@@ -1,90 +1,87 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <data noupdate="1">
-        <record id="email_template_invoice_hobo" model="mail.template">
-            <field name="name">Invoice Sending Hoboretail</field>
-            <field name="model_id" ref="usa_hoboretail.model_report_invoice_partner"/>
-            <field name="email_from">{{ (object.user_id.email_formatted) }}</field>
-            <field name="partner_to">{{ object.partner_id.id }}</field>
-            <field name="subject">Invoices</field>
-            <field name="body_html" type="html">
-                <div style="margin: 0px; padding: 0px;">
-                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
-                        Dear
-                        <t t-if="object.partner_id.parent_id">
-                            <t t-out="object.partner_id.name or ''"/>
-                        </t>
-                        <t t-else="">
-                            <t t-out="object.partner_id.name or ''"/>,
-                        </t>
-                        <br/>
-                        <br/>
-                        I hope you are well. Please find attached our invoice (s) for services. Please let us know if you have any questions.
-                        <br/>
-                        <!--                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">-->
-                        <table style=" border-collapse: collapse;
+    <record id="email_template_invoice_hobo" model="mail.template">
+        <field name="name">Invoice Sending Hoboretail</field>
+        <field name="model_id" ref="usa_hoboretail.model_report_invoice_partner"/>
+        <field name="email_from">{{ (object.user_id.email_formatted) }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="subject">Invoices</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear
+                    <t t-if="object.partner_id.parent_id">
+                        <t t-out="object.partner_id.name or ''"/>
+                    </t>
+                    <t t-else="">
+                        <t t-out="object.partner_id.name or ''"/>,
+                    </t>
+                    <br/>
+                    <br/>
+                    I hope you are well. Please find attached our invoice (s) for services. Please let us know if you have any questions.
+                    <br/>
+                    <!--                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">-->
+                    <table style=" border-collapse: collapse;
                                     margin: 25px 0;
                                     font-size: 0.9em;
                                     font-family: sans-serif;
                                     min-width: 600px;
                                     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
                                     border: 1px">
-                            <t t-set="i" t-value="0"/>
-                            <thead>
-                                <tr style="font-weight: bold; background:#e1dfdf;">
-                                    <th style="width:8%">#</th>
-                                    <th>Description</th>
-                                    <th>W/O</th>
-                                    <th>Invoice #</th>
-                                    <th>Date</th>
-                                    <th>Total</th>
+                        <t t-set="i" t-value="0"/>
+                        <thead>
+                            <tr style="font-weight: bold; background:#e1dfdf;">
+                                <th style="width:8%">#</th>
+                                <th>Description</th>
+                                <th>W/O</th>
+                                <th>Invoice #</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="object.invoice_ids" t-as="invoice">
+                                <t t-set="i" t-value="i+1"/>
+                                <tr>
+                                    <td style="text-align:center; color:#b71697">
+                                        <t t-out="i"/>
+                                    </td>
+                                    <td style="text-align:center">Product</td>
+                                    <td style="text-align:center">
+                                        <t t-out="invoice.work_order"/>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <t t-out="invoice.name"/>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <t t-if="invoice.invoice_date">
+                                            <t t-out="invoice.invoice_date.strftime('%m/%d/%Y')"/>
+                                        </t>
+
+                                    </td>
+                                    <td style="text-align: right">
+                                        <t t-out="invoice.amount_residual"/>
+                                    </td>
+
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <t t-foreach="object.invoice_ids" t-as="invoice">
-                                    <t t-set="i" t-value="i+1"/>
-                                    <tr>
-                                        <td style="text-align:center; color:#b71697">
-                                            <t t-out="i"/>
-                                        </td>
-                                        <td style="text-align:center">Product</td>
-                                        <td style="text-align:center">
-                                            <t t-out="invoice.work_order"/>
-                                        </td>
-                                        <td style="text-align:center">
-                                            <t t-out="invoice.name"/>
-                                        </td>
-                                        <td style="text-align:center">
-                                            <t t-if="invoice.invoice_date">
-                                                <t t-out="invoice.invoice_date.strftime('%m/%d/%Y')"/>
-                                            </t>
-
-                                        </td>
-                                        <td style="text-align: right">
-                                            <t t-out="invoice.amount_residual"/>
-                                        </td>
-
-                                    </tr>
-                                </t>
-                            </tbody>
-                        </table>
-                        <br/>
-                        <br/>
-                        Best Regards,
-                        <t t-if="not is_html_empty(object.user_id.signature)">
-                            <br/>
-                            <br/>
-                            <t t-out="object.user_id.signature or ''">--
-                                <br/>
                             </t>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <br/>
+                    Best Regards,
+                    <t t-if="not is_html_empty(object.user_id.signature)">
+                        <br/>
+                        <br/>
+                        <t t-out="object.user_id.signature or ''">--
+                            <br/>
                         </t>
-                    </p>
-                </div>
-            </field>
-            <field name="lang">{{ object.partner_id.lang }}</field>
-            <field name="auto_delete" eval="True"/>
-        </record>
-
-    </data>
+                    </t>
+                </p>
+            </div>
+        </field>
+        <field name="lang">{{ object.partner_id.lang }}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
 
 </odoo>
