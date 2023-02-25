@@ -9,7 +9,7 @@
     'author': "Ing.Jhonny Mack Merino Samillán",
     'website': "www.hoboretail.com ",
     'category': 'Sale',
-    'version': '16.0.1.5',
+    'version': '16.0.1.6',
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'account'],
     # always loaded
@@ -20,6 +20,7 @@
         'views/account_journal_views.xml',
         'views/sale_order_views.xml',
         'views/account_move_views.xml',
+        'views/product_views.xml',
         'wizard/invoice_partner_massive_wizard.xml',
         'reports/account_invoice_report.xml',
     ],

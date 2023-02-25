@@ -37,7 +37,7 @@ class ReportInvoicePartner(models.Model):
         try:
             self._clean_data()
             record = self.create_report(options)
-            email_template = self.env.ref("usa_hoboretail.email_template_invoice_hobo")
+            email_template = self.env.ref("usa_hoboretail.email_template_invoice_hoboretail")
             attachment_ids = record.files_to_attachment()
             email_template.attachment_ids = False
             email_template.attachment_ids += attachment_ids
