@@ -45,18 +45,19 @@ class AccountMove(models.Model):
                     sequence_id = journal_id.sequence_return_id
                     if not sequence_id:
                         raise ValidationError(_("Make sure you have a corrective sequence for the journal %s" % journal_id.name))
-
-                name = record.env.ref('usa_hoboretail.sequence_move_temporary').next_by_id()
-                _logger.info("MOVE - Generación de nombre temporal %s " % name)
-                record.sequence_id = sequence_id
-                record.name = name
+                if sequence_id:
+                    name = record.env.ref('usa_hoboretail.sequence_move_temporary').next_by_id()
+                    _logger.info("MOVE - Generación de nombre temporal %s " % name)
+                    record.sequence_id = sequence_id
+                    record.name = name
 
     def _create_sequence(self):
         for record in self:
-            name = record.sequence_id.next_by_id()
-            record.name = name
-            record.payment_reference = name
-            _logger.info("MOVE - Generación de nombre correcto %s " % name)
+            if record.move_type in ('out_invoice', 'in_invoice','out_refund', 'in_refund'):
+                name = record.sequence_id.next_by_id()
+                record.name = name
+                record.payment_reference = name
+                _logger.info("MOVE - Generación de nombre correcto %s " % name)
 
 
     def format_date_usa(self, date):
