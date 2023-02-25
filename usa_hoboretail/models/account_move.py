@@ -36,6 +36,7 @@ class AccountMove(models.Model):
             journal_id = record.journal_id
             name = '/'
             if journal_id:
+                sequence_id = False
                 if record.move_type in ('out_invoice', 'in_invoice'):
                     sequence_id = journal_id.sequence_id
                     if not sequence_id:
