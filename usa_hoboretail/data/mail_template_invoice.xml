@@ -49,7 +49,7 @@
                                         </td>
                                         <td style="text-align:left">
                                             <t t-if="invoice.invoice_line_ids[0] and invoice.invoice_line_ids[0].product_id">
-                                                <t t-out="invoice.invoice_line_ids[0].product_id.name"/>
+                                                <t t-out="invoice.invoice_line_ids[0].product_id.general_description"/>
                                             </t>
                                             <t t-else="">
                                                 -
