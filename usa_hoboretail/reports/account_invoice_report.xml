@@ -299,8 +299,8 @@
         <field name="page_height">297</field>
         <field name="page_width">210</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">68</field> <!-- la diferencia (margin_top - header_spacing) es el espacio que queda en la parte superior de la hoja-->
-        <field name="header_spacing">55</field>
+        <field name="margin_top">75</field> <!-- la diferencia (margin_top - header_spacing) es el espacio que queda en la parte superior de la hoja-->
+        <field name="header_spacing">65</field>
         <field name="margin_bottom">35</field>
         <field name="margin_left">17</field>
         <field name="margin_right">12</field>
