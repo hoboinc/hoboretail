@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         <record id="email_template_invoice_hoboretail" model="mail.template">
             <field name="name">Invoice Sending Hoboretail</field>
             <field name="model_id" ref="usa_hoboretail.model_report_invoice_partner"/>

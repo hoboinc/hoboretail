@@ -16,24 +16,25 @@
         <div class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
             <div class="row">
                 <div class="col-1 text-center">
-                    <div style="border-right: 25px solid #f2da1c;height: 54px;margin-right:15px"/>
-                    <div style="border-right: 25px solid #00d1d3;height: 54px;margin-right:15px"/>
-                    <div style="border-right: 25px solid #fa4f4f;height: 54px;margin-right:15px"/>
-                    <div style="border-right: 25px solid #9e00b9;height: 54px;margin-right:15px"/>
+                    <div style="border-right: 25px solid #f2da1c;height: 65px;margin-right:15px"/>
+                    <div style="border-right: 25px solid #00d1d3;height: 65px;margin-right:15px"/>
+                    <div style="border-right: 25px solid #fa4f4f;height: 65px;margin-right:15px"/>
+                    <div style="border-right: 25px solid #9e00b9;height: 65px;margin-right:15px"/>
                 </div>
                 <div class="col-11">
                     <div class="row ">
                         <div class="col-8 mt-2">
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-left" alt="Logo"
-                                 style="max-height:35px; height: 35px; max-width: 150px;width: 150px;"/>
+                                 style="max-height:55px; height: 55px; max-width: 185px;width: 185px;"/>
                         </div>
-                        <div class="col-4 mt-1">
-                            <h1 style="color:#f2da1c">Invoice</h1>
-                            <span t-esc="o.name" style="font-size: 21px"/>
+                        <div class="col-4">
+<!--                            <h1 style="color:#f2da1c">Invoice</h1>-->
+                            <span style="color:#f2da1c; font-size: 50px">Invoice</span><br/>
+                            <span t-esc="o.name" style="font-size: 26px"/>
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="font-size: 19px">
                         <div class="col-8">
                             <span>Invoice To</span>
                             <h5 t-esc="o.partner_id.name"/>
@@ -89,25 +90,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <!--                            <table style="width:100%">-->
-                            <!--                                <body>-->
-                            <!--                                    <tr>-->
-                            <!--                                        <td style="width:50%">Work Order</td>-->
-                            <!--                                        <td style="width:10%">:</td>-->
-                            <!--                                        <td class="text-right" style="width:40%">-->
-                            <!--                                            <t t-esc="o.work_order"/>-->
-                            <!--                                        </td>-->
-                            <!--                                    </tr>-->
-                            <!--                                    <tr>-->
-                            <!--                                        <td style="width:50%">W/O Date</td>-->
-                            <!--                                        <td style="width:10%">:</td>-->
-                            <!--                                        <td class="text-right" style="width:40%">-->
-                            <!--                                            <t t-esc="o.work_order_date"/>-->
-                            <!--                                        </td>-->
-                            <!--                                    </tr>-->
-                            <!--                                </body>-->
-                            <!--                            </table>-->
                         </div>
                     </div>
                 </div>
@@ -115,30 +97,15 @@
         </div>
         <div class="article o_report_layout_clean" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
             <t t-set="o" t-value="o.with_context(lang=lang)"/>
-            <div class="page" style="font-size:13px!important;font-weight: lighter !important;">
+            <div class="page" style="font-size:18px!important;font-weight: lighter !important;">
                 <div class="row">
                     <div class="col-1"/>
                     <div class="col-11">
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col-4"/>-->
-                        <!--                            <div class="col-4">-->
-                        <!--                                &lt;!&ndash;                                <t t-esc="o.partner_id.email"/>&ndash;&gt;-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-2" style="text-align: center !important; background: #f2da1c">-->
-                        <!--                                <h4><t t-esc="o.currency_id.name"/>:-->
-                        <!--                                </h4>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-2" style="text-align: right !important; background: #f2da1c">-->
-                        <!--                                <h4>-->
-                        <!--                                    <t t-esc="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-                        <!--                                </h4>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
                         <div class="row">
                             <div class="col-12">
                                 <table class="table table-striped table-sm">
                                     <thead>
-                                        <tr style="font-size: 16px">
+                                        <tr style="font-size: 18px">
                                             <th style="width:75%">
                                                 Item Descriptions
                                             </th>
@@ -191,18 +158,6 @@
                                                     </td>
                                                 </t>
                                             </tr>
-
-                                            <!--                                            <t t-if="current_section and (line_last or lines[line_index+1].display_type == 'line_section')">-->
-                                            <!--                                                <tr class="is-subtotal text-end">-->
-                                            <!--                                                    <td colspan="99">-->
-                                            <!--                                                        <strong class="mr16">Subtotal</strong>-->
-                                            <!--                                                        <span-->
-                                            <!--                                                                t-esc="current_subtotal"-->
-                                            <!--                                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'-->
-                                            <!--                                                        />-->
-                                            <!--                                                    </td>-->
-                                            <!--                                                </tr>-->
-                                            <!--                                            </t>-->
                                         </t>
                                     </tbody>
                                 </table>
@@ -274,117 +229,12 @@
                                 </table>
                             </div>
                         </div>
-                        <!--                        <hr style="border: 3px solid #c0bfbf;"/>-->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col-8">-->
-                        <!--                                <span>Terms &amp; Conditions</span>-->
-                        <!--                                <br/>-->
-                        <!--                                <span style="color:#c0bfbf">Total payment due in-->
-                        <!--                                    <t t-esc="o.invoice_payment_term_id.line_ids[0].days"/>-->
-                        <!--                                    days-->
-                        <!--                                </span>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-4 text-right" style="font-size: 20px">-->
-                        <!--                                &lt;!&ndash;Total amount with all taxes&ndash;&gt;-->
-                        <!--                                <table class="table">-->
-                        <!--                                    <body>-->
-                        <!--                                        <tr>-->
-                        <!--                                            <td>-->
-                        <!--                                                <strong>Total</strong>-->
-                        <!--                                            </td>-->
-                        <!--                                            <td class="text-end text-right">-->
-                        <!--                                                <span t-esc="tax_totals['formatted_amount_total']"/>-->
-                        <!--                                            </td>-->
-                        <!--                                        </tr>-->
-                        <!--                                    </body>-->
-
-                        <!--                                </table>-->
-
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="row mt-4 text-center">-->
-                        <!--                            <div class="col-12">-->
-                        <!--                                <h4>Thank You For Your Business!</h4>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="row mt-4">-->
-                        <!--                            <table class="table table-borderless table-sm ">-->
-                        <!--                                &lt;!&ndash;                            <table style="with:100%;">&ndash;&gt;-->
-                        <!--                                <body>-->
-                        <!--                                    <tr>-->
-                        <!--                                        <td style="width:60%">-->
-
-                        <!--                                        </td>-->
-                        <!--                                        <td style="width:10%">-->
-                        <!--                                            <span style="color: #f2da1c">Phone:</span>-->
-                        <!--                                        </td>-->
-                        <!--                                        <td style="width:30%">-->
-                        <!--                                            <span t-esc="company.phone"/>-->
-                        <!--                                        </td>-->
-                        <!--                                    </tr>-->
-                        <!--                                    <tr>-->
-                        <!--                                        <td></td>-->
-                        <!--                                        <td>-->
-                        <!--                                            <span style="color:#00d1d3">Email:</span>-->
-                        <!--                                        </td>-->
-                        <!--                                        <td>-->
-                        <!--                                            <span t-esc="company.email"/>-->
-                        <!--                                        </td>-->
-                        <!--                                    </tr>-->
-                        <!--                                    <tr>-->
-                        <!--                                        <td></td>-->
-                        <!--                                        <td>-->
-                        <!--                                            <span style="color:#fa4f4f">Website:</span>-->
-                        <!--                                        </td>-->
-                        <!--                                        <td>-->
-                        <!--                                            <span t-esc="company.website"/>-->
-                        <!--                                        </td>-->
-                        <!--                                    </tr>-->
-                        <!--                                    <tr>-->
-                        <!--                                        <td class="text-center">-->
-                        <!--                                            <span t-esc="o.user_id.name"/>-->
-                        <!--                                            <br/>-->
-                        <!--                                            <span style="color:#c0bfbf">Hobo Inc</span>-->
-                        <!--                                        </td>-->
-                        <!--                                        <td>-->
-                        <!--                                            <span style="color:#9e00b9">Address:</span>-->
-                        <!--                                        </td>-->
-                        <!--                                        <td>-->
-                        <!--                                            <span t-esc="company.street"/>,-->
-                        <!--                                            <span t-esc="company.city"/>,-->
-                        <!--                                            <t t-if="company.state_id">-->
-                        <!--                                                <span t-esc="company.state_id.name"/>,-->
-                        <!--                                            </t>-->
-                        <!--                                            <t t-else="">-->
-                        <!--                                                -,-->
-                        <!--                                            </t>-->
-                        <!--                                            <span t-esc="company.zip"/>-->
-                        <!--                                        </td>-->
-                        <!--                                    </tr>-->
-                        <!--                                </body>-->
-                        <!--                            </table>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col-12 text-center">-->
-                        <!--                                <span style="color: #f2da1c">____________________________________________________</span>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col-12 text-center">-->
-                        <!--                                <p>-->
-                        <!--                                    As part of a Retail Rollout program or simply a unique decorating facility; Window Displays, Fixtures Specializing in-->
-                        <!--                                    Vinyl and Tinting applications or Wallcovering, Advertising and Decorative Vinyl, Assembly and installation of all-->
-                        <!--                                    accessories of retail merchandising. Serving in DC | MD | VA | DE-->
-                        <!--                                </p>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
                     </div>
                 </div>
 
             </div>
             <!--FIN PAGE-->
-            <div class="footer" style="font-size: 10px">
+            <div class="footer" style="font-size: 16px">
                 <hr style="border: 3px solid #c0bfbf;"/>
                 <div class="row">
                     <div class="col-12 text-center" style="color:#c0bfbf">
@@ -394,25 +244,26 @@
                         <span style="color:#f2da1c">|</span>
                         <span t-esc="company.website"/>
                         <span style="color:#f2da1c">|</span>
-                        <t t-if="company.street">
-                            <span t-esc="company.street"/>,
-                        </t>
-                        <t t-else="">
-                            -,
-                        </t>
-                        <t t-if="company.city">
-                            <span t-esc="company.city"/>,
-                        </t>
-                        <t t-else="">
-                            -,
-                        </t>
+                        17105 Amity Dr, Derwood, MD 20855
+<!--                        <t t-if="company.street">-->
+<!--                            <span t-esc="company.street"/>,-->
+<!--                        </t>-->
+<!--                        <t t-else="">-->
+<!--                            -,-->
+<!--                        </t>-->
+<!--                        <t t-if="company.city">-->
+<!--                            <span t-esc="company.city"/>,-->
+<!--                        </t>-->
+<!--                        <t t-else="">-->
+<!--                            -,-->
+<!--                        </t>-->
 
-                        <t t-if="company.state_id">
-                            <span t-esc="company.state_id.name"/>,
-                        </t>
-                        <t t-else="">
-                            -,
-                        </t>
+<!--                        <t t-if="company.state_id">-->
+<!--                            <span t-esc="company.state_id.name"/>,-->
+<!--                        </t>-->
+<!--                        <t t-else="">-->
+<!--                            -,-->
+<!--                        </t>-->
                         <span t-esc="company.zip"/>
                     </div>
                 </div>
@@ -450,7 +301,7 @@
         <field name="orientation">Portrait</field>
         <field name="margin_top">68</field> <!-- la diferencia (margin_top - header_spacing) es el espacio que queda en la parte superior de la hoja-->
         <field name="header_spacing">55</field>
-        <field name="margin_bottom">24</field>
+        <field name="margin_bottom">35</field>
         <field name="margin_left">17</field>
         <field name="margin_right">12</field>
         <field name="header_line" eval="False"/><!-- mostrar una linea en cabecera-->

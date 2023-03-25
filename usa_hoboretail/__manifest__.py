@@ -9,7 +9,7 @@
     'author': "Ing.Jhonny Mack Merino Samillán",
     'website': "www.hoboretail.com ",
     'category': 'Sale',
-    'version': '16.0.1.8',
+    'version': '16.0.1.9',
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'account'],
     # always loaded
