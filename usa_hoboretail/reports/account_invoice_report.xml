@@ -24,8 +24,7 @@
                 <div class="col-11">
                     <div class="row ">
                         <div class="col-8 mt-2">
-                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-left" alt="Logo"
-                                 style="max-height:55px; height: 55px; max-width: 185px;width: 185px;"/>
+                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-left" alt="Logo" style="max-height:55px; height: 55px; max-width: 185px;width: 185px;"/>
                         </div>
                         <div class="col-4">
 <!--                            <h1 style="color:#f2da1c">Invoice</h1>-->
@@ -34,7 +33,7 @@
 
                         </div>
                     </div>
-                    <div class="row" style="font-size: 19px">
+                    <div class="row" style="font-size: 18px">
                         <div class="col-8">
                             <span>Invoice To</span>
                             <h5 t-esc="o.partner_id.name"/>
@@ -97,7 +96,7 @@
         </div>
         <div class="article o_report_layout_clean" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
             <t t-set="o" t-value="o.with_context(lang=lang)"/>
-            <div class="page" style="font-size:18px!important;font-weight: lighter !important;">
+            <div class="page" style="font-size:17px!important;font-weight: lighter !important;">
                 <div class="row">
                     <div class="col-1"/>
                     <div class="col-11">
@@ -105,7 +104,7 @@
                             <div class="col-12">
                                 <table class="table table-striped table-sm">
                                     <thead>
-                                        <tr style="font-size: 18px">
+                                        <tr style="font-size: 17px">
                                             <th style="width:75%">
                                                 Item Descriptions
                                             </th>
@@ -206,15 +205,15 @@
                                                 <tr t-if="payment_vals['is_exchange'] == 0">
                                                     <td>
                                                         <i class="oe_form_field text-end oe_payment_label">Paid on
-                                                            <t t-esc="payment_vals['date']" t-options='{"widget": "date"}'/>
+                                                            <t t-esc="payment_vals['date']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
                                                         </i>
                                                     </td>
                                                     <td class="text-end">
-                                                        <span t-esc="payment_vals['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                        <span t-esc="payment_vals['amount']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                                                     </td>
                                                 </tr>
                                             </t>
-                                            <t t-if="len(payments_vals) > 0">
+                                            <t t-if="len(payments_vals) &gt; 0">
                                                 <tr class="border-black">
                                                     <td>
                                                         <strong>Amount Due</strong>
@@ -234,7 +233,7 @@
 
             </div>
             <!--FIN PAGE-->
-            <div class="footer" style="font-size: 16px">
+            <div class="footer" style="font-size: 15.1px">
                 <hr style="border: 3px solid #c0bfbf;"/>
                 <div class="row">
                     <div class="col-12 text-center" style="color:#c0bfbf">
@@ -302,7 +301,7 @@
         <field name="margin_top">75</field> <!-- la diferencia (margin_top - header_spacing) es el espacio que queda en la parte superior de la hoja-->
         <field name="header_spacing">65</field>
         <field name="margin_bottom">35</field>
-        <field name="margin_left">17</field>
+        <field name="margin_left">14</field>
         <field name="margin_right">12</field>
         <field name="header_line" eval="False"/><!-- mostrar una linea en cabecera-->
         <field name="dpi">90</field>
